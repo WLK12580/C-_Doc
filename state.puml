@@ -1,0 +1,34 @@
+@startuml
+
+class DownLoadManager{
+    -DownLoadState *ptr_state
+    -DownLoadItem: map<std::string,std::string>
+    -DownLoadCount: map<std::string,int>
+    +GetDownIten(): void
+    +DownLoad(std::string ,std::striing)
+}
+interface DownLoadState{
+    +virtual void DownLoadOperate(std::string user,std::string item,DownLoadManager *ptr)=0
+}
+class NormalDownLoad{
+    +void DownLoadOperate(std::string user,std::string item,DownLoadManager *ptr)
+}
+class SpiteDownLoad{
+    +void DownLoadOperate(std::string user,std::string item,DownLoadManager *ptr)
+}
+class RepateDownLoad{
+    +void DownLoadOperate(std::string user,std::string item,DownLoadManager *ptr)
+}
+class BlackDownLoad{
+    +void DownLoadOperate(std::string user,std::string item,DownLoadManager *ptr)
+}
+
+DownLoadManager o-- DownLoadState
+DownLoadState <|-- NormalDownLoad
+
+DownLoadState <|-- RepateDownLoad
+DownLoadState <|-- SpiteDownLoad
+DownLoadState <|-- BlackDownLoad
+
+
+@enduml
